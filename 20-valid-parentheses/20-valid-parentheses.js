@@ -3,7 +3,7 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-      const bracketParis = {
+  const bracketParis = {
     ")": "(",
     "}": "{",
     "]": "["
@@ -23,9 +23,5 @@ var isValid = function(s) {
     }
   }
   
-  if (keepTrackOpen.length) {
-    return false;
-  }
-
-  return true;
+  return (!keepTrackOpen.length);
 };
