@@ -10,11 +10,12 @@ const table = {};
   for (let i = 0, n = nums.length; i < n; i++) {
     const num = nums[i];
     const diff = target - num;
+    const diffIndex = table[diff];
     
-    if (table[diff] >= 0) {
-      return [table[diff], i];
-    } else {
+    if (diffIndex === undefined) {
       table[num] = i;
+    } else {
+      return [diffIndex, i];
     }
   }
 };
