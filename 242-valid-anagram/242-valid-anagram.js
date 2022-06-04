@@ -4,11 +4,8 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-  
-  const str1Size = s.length;
-  const str2Size = t.length;
-  
-  if (str1Size !== str2Size) return false;
+
+  if (s.length !== t.length) return false;
   
   const countChar = function (table, str) {
     for (let i = 0, n = str.length; i < n; i++) {
