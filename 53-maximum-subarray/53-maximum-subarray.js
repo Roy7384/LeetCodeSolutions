@@ -3,7 +3,6 @@
  * @return {number}
  */
 const maxSubArray = function(nums) {
-  const arrLen = nums.length;
   let sum = 0;
   let maxSum = nums[0];
   
