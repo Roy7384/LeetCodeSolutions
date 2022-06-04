@@ -25,6 +25,6 @@ const checkNode = function (node) {
     
 }
 
-var isBalanced = function(root) {
+const isBalanced = function(root) {
     return checkNode(root)[1];
 };
