@@ -10,6 +10,7 @@ const maxSubArray = function(nums) {
   let maxSum = -Infinity;
   
   while (r < arrLen) {
+      
     if (l === r) {
       sum = nums[l];
     } else {
