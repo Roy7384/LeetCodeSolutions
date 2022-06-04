@@ -6,9 +6,9 @@ const maxSubArray = function(nums) {
   let sum = 0;
   let maxSum = nums[0];
   
-  for (const num of nums) {
+  for (let i = 0, n = nums.length; i < n; i++) {
       if (sum < 0) sum = 0;
-      sum += num;
+      sum += nums[i];
       maxSum = Math.max(maxSum, sum);
   }
     
