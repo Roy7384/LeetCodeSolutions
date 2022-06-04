@@ -15,7 +15,7 @@ const fill = function (image, sr, sc, oldColor, newColor) {
     fill(image, sr, sc - 1, oldColor, newColor);
 }
 
-var floodFill = function(image, sr, sc, newColor) {
+const floodFill = function(image, sr, sc, newColor) {
     const oldColor = image[sr][sc];
     
     if (oldColor === newColor) return image;
