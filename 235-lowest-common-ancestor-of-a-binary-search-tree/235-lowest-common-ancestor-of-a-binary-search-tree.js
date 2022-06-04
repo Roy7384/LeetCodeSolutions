@@ -23,6 +23,6 @@ var lowestCommonAncestor = function(root, p, q) {
     } else if (valP < root.val && valQ < root.val) {
        return lowestCommonAncestor(root.left, p, q);
     } else {
-        return root
+       return root
     }
 };
