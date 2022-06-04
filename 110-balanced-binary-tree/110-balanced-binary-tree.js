@@ -15,9 +15,13 @@ const checkNode = function (node) {
     if (!node) return [0, true];
     
     const [lh, lbs] = checkNode(node.left);
+    if (!lbs) return [0, false];
+ 
     const [rh, rbs] = checkNode(node.right);
+    if (!rbs) return [0, false];
     
-    const balanced = (lbs && rbs && Math.abs(lh - rh) <= 1);
+    
+    const balanced = Math.abs(lh - rh) <= 1;
     
     const maxHeight = Math.max(lh, rh);
     
