@@ -11,6 +11,7 @@ const search = function(nums, target) {
   };
 
   while (headIndex <= tailIndex) {
+
     const midIndex = middleIndex(headIndex, tailIndex);
     const midNum = nums[midIndex];
 
