@@ -10,7 +10,7 @@ const maxSubArray = function(nums) {
   for (const num of nums) {
       if (sum < 0) sum = 0;
       sum += num;
-      maxSum = maxSum >= sum ? maxSum : sum;
+      maxSum = Math.max(maxSum, sum);
   }
     
   return maxSum;
