@@ -20,6 +20,6 @@ const floodFill = function(image, sr, sc, newColor) {
     
     if (oldColor === newColor) return image;
     
-    fill(image, sr, sc, image[sr][sc], newColor);
+    fill(image, sr, sc, oldColor, newColor);
     return image;
 };
