@@ -7,6 +7,8 @@ var isAnagram = function(s, t) {
 
   if (s.length !== t.length) return false;
   
+  return s.split("").sort().join("") === t.split("").sort().join("");
+/* 
   const countChar = function (table, str) {
     for (let i = 0, n = str.length; i < n; i++) {
       if (!table[str[i]]) {
@@ -28,5 +30,5 @@ var isAnagram = function(s, t) {
     }
   } 
   return true;
-  
+*/  
 };
