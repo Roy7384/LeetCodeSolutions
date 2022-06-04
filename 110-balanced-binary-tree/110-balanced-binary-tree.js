@@ -14,19 +14,17 @@
 const checkNode = function (node) {
     if (!node) return [0, true];
     
-    const leftResult = checkNode(node.left);
-    const rightResult = checkNode(node.right);
+    const [lh, lbs] = checkNode(node.left);
+    const [rh, rbs] = checkNode(node.right);
     
-    const balanced = (leftResult[1] && rightResult[1] && Math.abs(leftResult[0] - rightResult[0]) <= 1);
+    const balanced = (lbs && rbs && Math.abs(lh - rh) <= 1);
     
-    const maxHeight = Math.max(leftResult[0], rightResult[0]);
+    const maxHeight = Math.max(lh, rh);
     
     return [maxHeight + 1, balanced];
     
 }
 
 var isBalanced = function(root) {
-    if (!root) return true;
-    
     return checkNode(root)[1];
 };
