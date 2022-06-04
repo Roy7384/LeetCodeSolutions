@@ -12,6 +12,5 @@ const maxSubArray = function(nums) {
       sum += num;
       maxSum = Math.max(maxSum, sum);
   }
-    
   return maxSum;
 };
