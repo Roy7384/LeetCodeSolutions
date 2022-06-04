@@ -4,16 +4,23 @@
  * @return {number}
  */
 const search = function(nums, target) {
-  const middleIndex = Math.floor(nums.length / 2);
-  
-  if (target < nums[middleIndex]) {
-    return search(nums.slice(0, middleIndex), target);
-  } else if (target > nums[middleIndex]) {
-    const result = search(nums.slice(middleIndex + 1), target);
-    return result === -1 ? result : result + middleIndex + 1; 
-  } else if (target === nums[middleIndex]) {
-    return middleIndex;
-  } else {
-    return -1;
+  let tailIndex = nums.length - 1;
+  let headIndex = 0;
+  const middleIndex = (head, tail) => {
+    return Math.floor((tail + head) / 2);
+  };
+
+  while (headIndex <= tailIndex) {
+    const midIndex = middleIndex(headIndex, tailIndex);
+    const midNum = nums[midIndex];
+
+    if (target < midNum) {
+      tailIndex = midIndex - 1;
+    } else if (target > midNum) {
+      headIndex = midIndex + 1;
+    } else if (target === midNum) {
+      return midIndex;
+    }
   }
+  return -1;
 };
