@@ -12,22 +12,21 @@
  * @return {TreeNode}
  */
 
-const findNode = function (parentNode, targetNode) {
-    if (!parentNode) return false;
-    if (parentNode.val === targetNode.val) return true;
-    return findNode(parentNode.right, targetNode) || findNode(parentNode.left, targetNode);
-}
-
 var lowestCommonAncestor = function(root, p, q) {
-    let cur = root;
+    if (!root) return root;
     
-    while (cur) {
-        if (findNode(cur.right, p) && findNode(cur.right, q)) {
-            cur = cur.right;
-        } else if (findNode(cur.left, p) && findNode(cur.left, q)) {
-            cur = cur.left;
-        } else {
-            return cur;
-        }
+    if (root.val === p.val || root.val === q.val){
+        return root;
+    }
+    
+    const leftResult = lowestCommonAncestor(root.left, p, q);
+    const rightResult = lowestCommonAncestor(root.right, p, q);
+    
+    if (leftResult && rightResult) return root;
+    
+    if (leftResult) {
+        return leftResult;
+    } else {
+        return rightResult;
     }
 };
