@@ -22,5 +22,6 @@ const search = function(nums, target) {
       return midIndex;
     }
   }
+
   return -1;
 };
