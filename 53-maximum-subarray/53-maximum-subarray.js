@@ -7,7 +7,7 @@ const maxSubArray = function(nums) {
   let r = 0;
   const arrLen = nums.length;
   let sum;
-  let maxSum = -Infinity;
+  let maxSum = nums[0];
   
   while (r < arrLen) {
       
