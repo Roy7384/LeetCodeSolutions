@@ -20,7 +20,7 @@ const maxSubArray = function(nums) {
     r ++;
       
     if (sum < 0) l = r;
-    maxSum = Math.max(maxSum, sum);
+    maxSum = maxSum > sum ? maxSum : sum;
     
   }
   
