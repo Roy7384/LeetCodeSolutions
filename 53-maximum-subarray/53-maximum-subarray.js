@@ -17,7 +17,7 @@ const maxSubArray = function(nums) {
       sum = sum + nums[r];
     }
     
-    r ++;
+    r++;
       
     if (sum < 0) l = r;
     maxSum = maxSum > sum ? maxSum : sum;
