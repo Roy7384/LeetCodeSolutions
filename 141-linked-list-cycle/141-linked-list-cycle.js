@@ -11,14 +11,15 @@
  * @return {boolean}
  */
 const hasCycle = function(head) {
-    let cur = head;
- 
-    while (cur) {
-        if (cur.visited) {
+    let f = head;
+    let s = head;
+    
+    while (f && f.next) {
+        f = f.next.next;
+        s = s.next;
+        if (f == s) {
             return true;
         }      
-        cur.visited = true;
-        cur = cur.next
     }
     return false;
 };
