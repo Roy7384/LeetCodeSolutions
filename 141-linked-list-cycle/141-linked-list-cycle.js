@@ -11,6 +11,7 @@
  * @return {boolean}
  */
 const hasCycle = function(head) {
+    
     let f = head;
     let s = head;
     
