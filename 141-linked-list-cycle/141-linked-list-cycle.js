@@ -17,7 +17,7 @@ const hasCycle = function(head) {
     while (f && f.next) {
         f = f.next.next;
         s = s.next;
-        if (f == s) {
+        if (f === s) {
             return true;
         }      
     }
