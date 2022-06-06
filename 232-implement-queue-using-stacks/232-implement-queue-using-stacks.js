@@ -1,22 +1,29 @@
-
 class MyQueue {
-    constructor() {
-        this.queue = [];
-    }
-    
-    push(x) {
-        this.queue.push(x)
-    }
+  constructor() {
+    this.popStack = [];
+    this.pushStack = [];
+  }
+  
+  push(x) {
+    this.pushStack.push(x);
+  }
 
-    pop() {
-        return this.queue.shift()
+  pop() {
+    if (!this.popStack.length) {
+      this.popStack = this.pushStack.reverse();
+      this.pushStack = [];
     }
-    
-    peek() {
-        return this.queue[0]
+    return this.popStack.pop();
+  }
+  
+  peek() {
+    if (!this.popStack.length) {
+      return this.pushStack[0];
     }
-    
-    empty() {
-        return !Boolean(this.queue.length) 
-    }
-};
+    return this.popStack[this.popStack.length - 1];
+  }
+  
+  empty() {
+    return !(this.popStack.length || this.pushStack.length);
+  }
+}
