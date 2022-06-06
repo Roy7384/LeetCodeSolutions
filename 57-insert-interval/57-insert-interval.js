@@ -17,7 +17,6 @@ const bSearch = function(arr, target) {
       return mid;
     }
   }
-  
   return left - 1;
 };
 
@@ -50,5 +49,4 @@ const insert = function(intervals, newInterval) {
     const toBeInsert = [intervals[sPosition][0], toBeInsertEnd];
     return intervals.slice(0, sPosition).concat([toBeInsert]).concat(intervals.slice(ePosition + 1));
   }
-  
 };
