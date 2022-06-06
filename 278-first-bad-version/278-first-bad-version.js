@@ -19,17 +19,19 @@ var solution = function(isBadVersion) {
      */
     return function(n) {
         
-        let versionToCheck = Math.floor(n / 2);;
         let badVer = n;
+        let versionToCheck = Math.floor(n / 2);
+        let prevChecked = 0;
         
         while (badVer > 1) {
-            
+           
             if (isBadVersion(versionToCheck)) {
                 badVer = versionToCheck;
-                versionToCheck = Math.floor(versionToCheck / 2); 
+                versionToCheck = Math.floor((versionToCheck + prevChecked) / 2); 
             } else if (badVer - 1 === versionToCheck) { 
                 return badVer;
             } else {
+                prevChecked = versionToCheck;
                 versionToCheck = Math.floor((badVer + versionToCheck) / 2)
             }
             
