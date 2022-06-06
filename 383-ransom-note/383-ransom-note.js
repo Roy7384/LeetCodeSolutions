@@ -15,7 +15,6 @@ const canConstruct = function(ransomNote, magazine) {
         } else {
             magMap[char] = 1; 
         }
-        
     }
     
     for (let i = 0, n = ransomNote.length; i < n; i ++) {
