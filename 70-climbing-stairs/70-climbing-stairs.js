@@ -18,12 +18,11 @@ const climbStairs = function(n) {
     } 
     
     
-    const result1 = climbStairs(n - 1);
-    cache[(n - 1).toString()] = result1;
-    
     const result2 = climbStairs(n - 2);
     cache[(n - 2).toString()] = result2;
     
+    const result1 = climbStairs(n - 1);
+    cache[(n - 1).toString()] = result1;
     
     return result1 + result2;
     
