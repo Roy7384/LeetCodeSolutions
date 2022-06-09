@@ -9,6 +9,7 @@ const climbStairs = function(n) {
     const dpArr = [];
     dpArr[n] = 1;
     dpArr[n - 1] = 1;
+    
     let count = n - 2;
      
     while(dpArr[0] === undefined) {
