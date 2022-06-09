@@ -3,7 +3,7 @@
  * @return {number}
  */
 
-const cache = {};
+const cache = new Map();
 
 const climbStairs = function(n) {
     
@@ -11,15 +11,14 @@ const climbStairs = function(n) {
         return n;
     }
     
-    const storedResult = cache[n.toString()];
+    const storedResult = cache.get(n);
     
     if (storedResult !== undefined) {
         return storedResult;
     } 
     
-    
     const sum = climbStairs(n - 1) + climbStairs(n - 2)
-    cache[n.toString()] = sum;
+    cache.set(n, sum);
     
     return sum;
     
