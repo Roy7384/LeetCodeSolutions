@@ -3,23 +3,19 @@
  * @return {number}
  */
 
-const cache = new Map();
 
 const climbStairs = function(n) {
     
-    if (n === 1 || n === 2) {
-        return n;
+    const dpArr = [];
+    dpArr[n] = 1;
+    dpArr[n - 1] = 1;
+    let count = n - 2;
+     
+    while(dpArr[0] === undefined) {
+        dpArr[count] = dpArr[count + 1] + dpArr[count + 2];
+        
+        count --;
     }
     
-    const storedResult = cache.get(n);
-    
-    if (storedResult !== undefined) {
-        return storedResult;
-    } 
-    
-    const sum = climbStairs(n - 1) + climbStairs(n - 2)
-    cache.set(n, sum);
-    
-    return sum;
-    
+    return dpArr[0];
 }
