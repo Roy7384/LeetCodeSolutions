@@ -2,7 +2,7 @@
  * @param {string} s
  * @return {number}
  */
-var longestPalindrome = function(s) {
+const longestPalindrome = function(s) {
     const charLookup = {};
     
     let result = 0;
