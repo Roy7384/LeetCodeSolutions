@@ -1,7 +1,7 @@
 # @param {Integer[]} nums
 # @return {Integer}
 def majority_element(nums) 
-    num_lookup = {}
+    num_lookup = Hash.new(0)
     
     threshold = nums.length / 2
     return nums[0] if threshold == 0
@@ -9,15 +9,11 @@ def majority_element(nums)
     nums.each do |num|
         lookup_result = num_lookup[num]
         
-        if lookup_result.nil?
-            num_lookup[num] = 1
-        else
-            lookup_result += 1
+        lookup_result += 1
                 
-            return num if lookup_result > threshold
+        return num if lookup_result > threshold
             
-            num_lookup[num] = lookup_result
-        end
+        num_lookup[num] = lookup_result
     end
     
 end
