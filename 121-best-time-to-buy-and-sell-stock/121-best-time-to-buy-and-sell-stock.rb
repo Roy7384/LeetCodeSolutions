@@ -6,10 +6,12 @@ def max_profit(prices)
     sell = 1
     
     while sell < prices.length
-        if prices[buy] >= prices[sell]
+        potential_p = prices[sell] - prices[buy]
+        
+        if potential_p <= 0
             buy = sell
         else
-            max_p = [max_p, prices[sell] - prices[buy]].max
+            max_p = potential_p if potential_p > max_p
         end
         sell += 1
     end
