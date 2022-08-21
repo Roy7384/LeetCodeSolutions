@@ -10,13 +10,14 @@
 # @param {ListNode} head
 # @return {Boolean}
 def hasCycle(head)
-    visited = []
+    return false unless head 
+    slow_pointer = head
+    fast_pointer = head
     
-    pointer = head
-    while pointer
-        return true if visited.include?(pointer)
-        visited.push(pointer)
-        pointer = pointer.next
+    while fast_pointer && fast_pointer.next
+        slow_pointer = slow_pointer.next
+        fast_pointer = fast_pointer.next.next 
+        return true if slow_pointer == fast_pointer
     end
     
     false
