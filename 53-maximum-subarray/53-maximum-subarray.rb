@@ -7,7 +7,7 @@ def max_sub_array(nums)
     nums.each do |num|
         sum_at_left = 0 if sum_at_left < 0
         sum_at_left += num
-        max_sum = [sum_at_left, max_sum].max
+        max_sum = max_sum > sum_at_left ? max_sum : sum_at_left 
     end
     
     max_sum
