@@ -12,9 +12,12 @@
 # @param {TreeNode} q
 # @return {TreeNode}
 def lowest_common_ancestor(root, p, q)
-   return root if p.val <= root.val && q.val >= root.val || (p.val >= root.val && q.val <= root.val)
+    p_val = p.val
+    q_val = q.val
+    root_val = root.val
+   return root if p_val <= root_val && q_val >= root_val || (p_val >= root_val && q_val <= root_val)
     
-   if q.val < root.val
+   if q_val < root_val
        lowest_common_ancestor(root.left, p, q)
    else 
        lowest_common_ancestor(root.right, p, q)
