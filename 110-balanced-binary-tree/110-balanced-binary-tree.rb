@@ -16,6 +16,8 @@ end
 def is_balanced_helper(node)
     return [true, 0] unless node
     
+    return [true, 1] if node.left.nil? && node.right.nil?
+    
     left_balanced, left_max_depth = is_balanced_helper(node.left)
     right_balanced, right_max_depth = is_balanced_helper(node.right)
     
