@@ -2,7 +2,7 @@
 # @param {Integer[]} new_interval
 # @return {Integer[][]}
 def insert(intervals, new_interval)
-    return [new_interval] if intervals.empty? 
+    
     result = []
     interval_to_add = new_interval
     
@@ -16,6 +16,7 @@ def insert(intervals, new_interval)
             interval_to_add = nil
         end
     end
+
     result.push(interval_to_add) if interval_to_add
     result
 end
