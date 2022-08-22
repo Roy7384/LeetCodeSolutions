@@ -4,7 +4,7 @@
 def insert(intervals, new_interval)
     
     result = []
-    interval_to_add = new_interval
+    interval_to_add = new_interval.clone
     
     intervals.each do |interval|
         left, right = interval 
