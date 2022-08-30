@@ -24,9 +24,7 @@ def ladder_length(begin_word, end_word, word_list)
       word = queue.shift
       return step if word == end_word
 
-      word_len = word.length
-
-      word_len.times do |i|
+      word.length.times do |i|
         pattern = word[0, i] + '*' + word[i + 1..]
         word_neigh[pattern].each do |neigh_word|
           unless visit.member?(neigh_word)
