@@ -1,12 +1,14 @@
 def ladder_length(begin_word, end_word, word_list)
   step = 0
-  return step unless word_list.include?(end_word)
+  word_set = Set.new(word_list)
+    
+  return step unless word_set.member?(end_word)
 
   word_neigh = Hash.new { |h, k| h[k] = [] }
-  word_list.push(begin_word)
+  word_set.add(begin_word)
   n = begin_word.length - 1
 
-  word_list.each do |word|
+  word_set.each do |word|
     0.upto(n) do |i|
       pattern = word[0, i] + '*' + word[i + 1..]
       word_neigh[pattern].push(word) unless word == begin_word
