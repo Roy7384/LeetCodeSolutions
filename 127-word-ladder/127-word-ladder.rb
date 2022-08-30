@@ -20,8 +20,7 @@ def ladder_length(begin_word, end_word, word_list)
 
   until queue.empty?
     step += 1
-    n = queue.length
-    n.times do |_|
+    queue.length.times do |_|
       word = queue.shift
       return step if word == end_word
 
