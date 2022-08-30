@@ -1,28 +1,40 @@
-# @param {String} begin_word
-# @param {String} end_word
-# @param {String[]} word_list
-# @return {Integer}
 def ladder_length(begin_word, end_word, word_list)
-    word_set = Set.new word_list
-    return 0 unless word_set.member?(end_word)
-    queue = [[begin_word, 1]]
-    while !queue.empty? do 
-        s = queue[0][0]
-        l = queue[0][1]
-        return l if s == end_word
-        queue.delete_at(0)
-        s.size.times do |i|
-            t0 = s[0...i]
-            t2 = s[(i + 1)...s.size]
-            for c in "a".ord.."z".ord do
-                next if c == s[i].ord
-                t = t0 + c.chr + t2
-                if word_set.member?(t) then
-                    word_set.delete(t)
-                    queue << [t, l + 1]
-                end
-            end
-        end
+  step = 0
+  return step unless word_list.include?(end_word)
+
+  word_neigh = Hash.new { |h, k| h[k] = [] }
+  word_list.push(begin_word)
+  n = begin_word.length - 1
+
+  word_list.each do |word|
+    0.upto(n) do |i|
+      pattern = word[0, i] + '*' + word[i + 1..]
+      word_neigh[pattern].push(word) unless word == begin_word
     end
-    0
+  end
+
+  visit = Set[]
+  queue = [begin_word]
+
+  until queue.empty?
+    step += 1
+    n = queue.length - 1
+    0.upto(n) do |_|
+      word = queue.shift
+      return step if word == end_word
+
+      word_len = word.length - 1
+
+      0.upto(word_len) do |i|
+        pattern = word[0, i] + '*' + word[i + 1..]
+        word_neigh[pattern].each do |neigh_word|
+          unless visit.member?(neigh_word)
+            queue.push(neigh_word)
+            visit.add(neigh_word)
+          end
+        end
+      end
+    end
+  end
+  0
 end
