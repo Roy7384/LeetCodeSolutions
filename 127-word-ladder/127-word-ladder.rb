@@ -6,10 +6,10 @@ def ladder_length(begin_word, end_word, word_list)
 
   word_neigh = Hash.new { |h, k| h[k] = [] }
   word_set.add(begin_word)
-  n = begin_word.length - 1
+  n = begin_word.length
 
   word_set.each do |word|
-    0.upto(n) do |i|
+    n.times do |i|
       pattern = word[0, i] + '*' + word[i + 1..]
       word_neigh[pattern].push(word) unless word == begin_word
     end
@@ -20,14 +20,14 @@ def ladder_length(begin_word, end_word, word_list)
 
   until queue.empty?
     step += 1
-    n = queue.length - 1
-    0.upto(n) do |_|
+    n = queue.length
+    n.times do |_|
       word = queue.shift
       return step if word == end_word
 
-      word_len = word.length - 1
+      word_len = word.length
 
-      0.upto(word_len) do |i|
+      word_len.times do |i|
         pattern = word[0, i] + '*' + word[i + 1..]
         word_neigh[pattern].each do |neigh_word|
           unless visit.member?(neigh_word)
