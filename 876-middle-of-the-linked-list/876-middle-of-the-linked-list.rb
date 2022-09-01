@@ -9,12 +9,12 @@
 # @param {ListNode} head
 # @return {ListNode}
 def middle_node(head)
-    fast_p = head.next
     slow_p = head
+    fast_p = head.next
     
     while fast_p 
-        fast_p = fast_p.next.nil? ? nil : fast_p.next.next
         slow_p = slow_p.next
+        fast_p = fast_p.next.nil? ? nil : fast_p.next.next
     end
     
     slow_p
