@@ -13,11 +13,7 @@ def middle_node(head)
     slow_p = head
     
     while fast_p 
-        if fast_p.next.nil?
-            fast_p = nil
-        else
-            fast_p = fast_p.next.next
-        end
+        fast_p = fast_p.next.nil? ? nil : fast_p.next.next
         slow_p = slow_p.next
     end
     
