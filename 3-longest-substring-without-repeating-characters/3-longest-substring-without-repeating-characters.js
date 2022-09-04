@@ -15,7 +15,7 @@ var lengthOfLongestSubstring = function(s) {
             i++
         }
         tempResult.add(char)
-        maxLen = maxLen < tempResult.size ? tempResult.size : maxLen
+        maxLen = Math.max(maxLen, tempResult.size)
     }
     
     return maxLen
