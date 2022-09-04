@@ -4,25 +4,10 @@
  * @return {number[][]}
  */
 var kClosest = function(points, k) {
-    const dist = (point) => { return Math.pow(point[0], 2) + Math.pow(point[1], 2)}
     
-    let min = Infinity;
-    let result = [];
-    let index;
+    const dist = (p) => Math.pow(p[0], 2) + Math.pow(p[1], 2);
     
-    while (k) {
-        points.forEach((p, i) => {
-            const distToO = dist(p)
-            if (distToO < min) {
-                min = distToO
-                index = i
-            }
-        })
-        result.push(points[index]) 
-        points[index] = [Infinity, Infinity];
-        min = Infinity;
-        k --
-    }
+    points = points.sort((a, b) => dist(a) - dist(b));
     
-    return result; 
+    return points.slice(0, k); 
 };
