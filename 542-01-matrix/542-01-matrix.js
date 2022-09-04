@@ -26,7 +26,7 @@ var updateMatrix = function(mat) {
     })
     
     const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-    dist = 0;
+    let dist = 0;
     
     while (queue.length) {
         for (_ = 0, ql = queue.length; _ < ql; _ ++) {
