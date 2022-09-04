@@ -9,23 +9,13 @@ var lengthOfLongestSubstring = function(s) {
     let i = 0;
     
     for (let j = 0, n = s.length; j < n; j++) {
-
-        if (!tempResult.has(s[j])) {
-            tempResult.add(s[j])
-        } else {
-            if (maxLen < tempResult.size) {
-                maxLen = tempResult.size
-            }
-            while(tempResult.has(s[j])) {
-                tempResult.delete(s[i])
-                i ++
-            }
-            tempResult.add(s[j])
+        const char = s[j]
+        while(tempResult.has(char)) {
+            tempResult.delete(s[i])
+            i++
         }
-    }
-    
-    if (maxLen < tempResult.size) {
-        maxLen = tempResult.size
+        tempResult.add(char)
+        maxLen = maxLen < tempResult.size ? tempResult.size : maxLen
     }
     
     return maxLen
