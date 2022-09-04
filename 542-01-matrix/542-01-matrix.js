@@ -36,12 +36,13 @@ var updateMatrix = function(mat) {
             }
             
             directions.forEach((d) => {
-                ni = i + d[0]
-                nj = j + d[1]
+                const ni = i + d[0]
+                const nj = j + d[1]
+                const marker = mark(ni, nj) 
                 
-                if (ni < m && ni >= 0 && nj < n && nj >= 0 && !visited.has(mark(ni, nj))) {
+                if (ni < m && ni >= 0 && nj < n && nj >= 0 && !visited.has(marker)) {
                     queue.push([ni, nj]);
-                    visited.add(mark(ni, nj));
+                    visited.add(marker);
                 }
             })
             
