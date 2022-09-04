@@ -25,7 +25,7 @@ var threeSum = function(nums) {
             const sum = numL + numR
             if (sum === target) {
                 result.push([num, numL, numR]) 
-                l++ 
+                
                 while (nums[l] === numL) l++
                 continue
             }
