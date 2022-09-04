@@ -3,26 +3,30 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-    let result = []
-    let tempResult = []
+    let maxLen = 0;
+    let tempResult = new Set();
     
-    for (let i = 0, n = s.length; i < n; i++) {
-        const occur = tempResult.indexOf(s[i]);
+    let i = 0;
+    
+    for (let j = 0, n = s.length; j < n; j++) {
 
-        if (occur === -1) {
-            tempResult.push(s[i])
+        if (!tempResult.has(s[j])) {
+            tempResult.add(s[j])
         } else {
-            if (result.length < tempResult.length) {
-                result = tempResult
+            if (maxLen < tempResult.size) {
+                maxLen = tempResult.size
             }
-            tempResult = tempResult.slice(occur + 1);
-            tempResult.push(s[i])
+            while(tempResult.has(s[j])) {
+                tempResult.delete(s[i])
+                i ++
+            }
+            tempResult.add(s[j])
         }
     }
     
-    if (result.length < tempResult.length) {
-        result = tempResult
+    if (maxLen < tempResult.size) {
+        maxLen = tempResult.size
     }
     
-    return result.length
+    return maxLen
 };
