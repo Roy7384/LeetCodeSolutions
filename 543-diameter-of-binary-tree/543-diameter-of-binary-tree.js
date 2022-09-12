@@ -11,23 +11,13 @@
  * @return {number}
  */
 var diameterOfBinaryTree = function(root) {
-    let maxDiameter = 0;
+    if (!root) return 0;
     
-    const queue = [root];
+    let maxDiameter = exploreMax(root.left) + exploreMax(root.right);
     
-    while (queue.length) {
-        const nodeToExplore = queue.shift();
-        const leftChild = nodeToExplore.left;
-        const rightChild = nodeToExplore.right;
-        
-        if (leftChild) queue.push(leftChild);
-        if (rightChild) queue.push(rightChild);
-        
-        const diameter = exploreMax(leftChild) + exploreMax(rightChild)
-        maxDiameter = Math.max(diameter, maxDiameter)
-    }
-    
-    return maxDiameter;
+    let maxDiaInChild = Math.max(diameterOfBinaryTree(root.left), diameterOfBinaryTree(root.right));
+     
+    return Math.max(maxDiameter, maxDiaInChild);
 };
 
 
