@@ -24,7 +24,7 @@ var diameterOfBinaryTree = function(root) {
 const exploreMax = function(node) {
     if (!node) return 0;
      
-    let maxLength = Math.max(exploreMax(node.left), exploreMax(node.right));
+    let maxDepth = Math.max(exploreMax(node.left), exploreMax(node.right));
     
-    return maxLength + 1;
+    return maxDepth + 1;
 }
