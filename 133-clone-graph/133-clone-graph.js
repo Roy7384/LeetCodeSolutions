@@ -12,6 +12,7 @@
  */
 var cloneGraph = function(node) {
     if (!node) return null;
+    
     const visited = new Set();
     const clonedNodes = [];
     
