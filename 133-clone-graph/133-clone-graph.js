@@ -11,7 +11,7 @@
  * @return {Node}
  */
 var cloneGraph = function(node) {
-    if (!node) return null;
+        if (!node) return null;
     
     const visited = new Set();
     const clonedNodes = [];
@@ -35,5 +35,4 @@ const dfsExplore = function(n, clonedN, visitedSet) {
     }
     
     return;
-}
-
+};
