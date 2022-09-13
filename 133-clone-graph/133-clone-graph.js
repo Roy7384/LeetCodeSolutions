@@ -16,36 +16,24 @@ var cloneGraph = function(node) {
     const visited = new Set();
     const clonedNodes = [];
     
-    const queue = [node];
+    dfsExplore(node, clonedNodes, visited);
     
-    while(queue.length) {
-        const n = queue.shift();
-        if(visited.has(n.val)) continue;
-        
-        visited.add(n.val);
-        
-        let clonedNode;
-        
-        if (!clonedNodes[n.val]) {
-            clonedNode = new Node(n.val);
-            clonedNodes[n.val] = clonedNode;
-        } else {
-            clonedNode = clonedNodes[n.val]
-        }
-        
-        for (let nei of n.neighbors) {
-            queue.push(nei);
-            
-            if (clonedNodes[nei.val]) {
-                clonedNode.neighbors.push(clonedNodes[nei.val])
-            } else {
-                const newNei = new Node(nei.val);
-                clonedNodes[nei.val] = newNei;
-                clonedNode.neighbors.push(clonedNodes[nei.val])
-            }
-        }
+    return clonedNodes[node.val]
+};
+
+
+const dfsExplore = function(n, clonedN, visitedSet) {
+    if (visitedSet.has(n.val)) return;
+    
+    visitedSet.add(n.val);
+    if (!clonedN[n.val]) clonedN[n.val] = new Node(n.val);
+    
+    for (let nei of n.neighbors) {
+        if (!clonedN[nei.val]) clonedN[nei.val] = new Node(nei.val);
+        clonedN[n.val].neighbors.push(clonedN[nei.val]);
+        dfsExplore(nei, clonedN, visitedSet);
     }
     
-    return clonedNodes[1]
-};
+    return;
+}
 
