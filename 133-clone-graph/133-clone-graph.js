@@ -36,7 +36,7 @@ var cloneGraph = function(node) {
         for (let nei of n.neighbors) {
             queue.push(nei);
             
-            if (visited.has(nei.val) || clonedNodes[nei.val]) {
+            if (clonedNodes[nei.val]) {
                 clonedNode.neighbors.push(clonedNodes[nei.val])
             } else {
                 const newNei = new Node(nei.val);
