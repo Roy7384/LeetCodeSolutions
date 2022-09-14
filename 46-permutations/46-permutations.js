@@ -4,26 +4,24 @@
  */
 var permute = function(nums) {
     const result = [];
-    for (let number of nums) {
-      create(number, nums, [], result);
-    }
+    create(nums, [], result, new Set())
     return result;
 };
 
 
-const create = function(num, nums, tempRes, results) {
-    tempRes.push(num);
-    
+const create = function(nums, tempRes, results, usedSet) {
     if (tempRes.length === nums.length) {
-        results.push([...tempRes]);
-        return;
+        results.push([...tempRes])
+        return
     }
     
-    for (let number of nums) {
+    for (let num of nums) {
+        if (usedSet.has(num)) continue;
         
-        if (tempRes.includes(number)) continue
-        
-        create(number, nums, tempRes, results);
+        usedSet.add(num);
+        tempRes.push(num);
+        create(nums, tempRes, results, usedSet)
         tempRes.pop();
+        usedSet.delete(num);
     }
 }
