@@ -4,6 +4,7 @@
  * @return {string}
  */
 var minWindow = function(s, t) {
+    if (s.length < t.length) return "" 
     
     const tCharTable = {};
     for (const char of t) {
@@ -12,7 +13,7 @@ var minWindow = function(s, t) {
     }
     
     const sCharTable = {};
-    let finalResult = "";
+    let subStart, subEnd;
     let l = -1;
     let r = -1;
     
@@ -22,18 +23,19 @@ var minWindow = function(s, t) {
             if (!(s[r] in sCharTable)) sCharTable[s[r]] = 0;
             sCharTable[s[r]]++;
         } else if (r - l > t.length) {
+            if (r - l < subEnd - subStart || subStart === undefined) {
+                subEnd = r + 1;
+                subStart = l + 1;
+            }
             l++;
             sCharTable[s[l]]--;
-            
-            if (r - l < finalResult.length || !finalResult) {
-                finalResult = s.slice(l, r + 1)
-            }
         } else {
             return s.slice(l + 1, r + 1)
         }
     }
     
-    return finalResult;
+    if (subStart === undefined) return ""
+    return s.slice(subStart, subEnd);
 };
 
 
