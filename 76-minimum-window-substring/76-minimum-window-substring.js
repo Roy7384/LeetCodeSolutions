@@ -4,8 +4,6 @@
  * @return {string}
  */
 var minWindow = function(s, t) {
-    let l = -1;
-    let r = -1;
     
     const tCharTable = {};
     for (const char of t) {
@@ -15,6 +13,9 @@ var minWindow = function(s, t) {
     
     const sCharTable = {};
     let finalResult = "";
+    let l = -1;
+    let r = -1;
+    
     while (r < s.length) {
         if (!compareTable(tCharTable, sCharTable)) {
             r++;
@@ -30,11 +31,9 @@ var minWindow = function(s, t) {
         } else {
             return s.slice(l + 1, r + 1)
         }
-        
     }
     
     return finalResult;
-    
 };
 
 
