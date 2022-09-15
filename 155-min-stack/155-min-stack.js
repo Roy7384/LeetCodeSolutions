@@ -11,10 +11,8 @@ var MinStack = function() {
 
 MinStack.prototype.push = function(val) {
     const currentMin = this.minKeepTrack[this.minKeepTrack.length - 1] 
-    if (currentMin === undefined || val < currentMin) {
+    if (currentMin === undefined || val <= currentMin) {
         this.minKeepTrack.push(val)
-    } else {
-        this.minKeepTrack.push(currentMin)
     }
     this.stack.push(val);
 };
@@ -23,8 +21,10 @@ MinStack.prototype.push = function(val) {
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    this.minKeepTrack.pop()
-   return this.stack.pop()
+    const currentMin = this.minKeepTrack[this.minKeepTrack.length - 1] 
+    const result = this.stack.pop();
+    if (result === currentMin) this.minKeepTrack.pop();
+    return result
 };
 
 /**
