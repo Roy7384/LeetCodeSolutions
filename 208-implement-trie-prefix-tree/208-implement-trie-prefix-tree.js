@@ -7,19 +7,11 @@ var Trie = function() {
 class TrieNode {
     constructor (char) {
         this.char = char;
-        this.children = [];
+        this.children = {};
         this.terminal = false;
     }
 }
 
-const charIn = function(node, char) {
-    for (let children of node.children) {
-        if (char === children.char) {
-            return children
-        }
-    }
-    return false;
-}
 /** 
  * @param {string} word
  * @return {void}
@@ -27,12 +19,12 @@ const charIn = function(node, char) {
 Trie.prototype.insert = function(word) {
     let currentNode = this.root;    
     for (const char of word) {
-        const charInNode = charIn(currentNode, char);
+        const charInNode = currentNode.children[char]; 
         if (charInNode) {
             currentNode = charInNode;
         } else {
             const newNode = new TrieNode(char);
-            currentNode.children.push(newNode);
+            currentNode.children[char] = newNode;
             currentNode = newNode;
         }  
     } 
@@ -46,7 +38,7 @@ Trie.prototype.insert = function(word) {
 Trie.prototype.search = function(word) {
     let currentNode = this.root;
     for (const char of word) {
-        const charInNode = charIn(currentNode, char);
+        const charInNode = currentNode.children[char];
         if (!charInNode) return false
         currentNode = charInNode;
     }
@@ -60,7 +52,7 @@ Trie.prototype.search = function(word) {
 Trie.prototype.startsWith = function(prefix) {
     let currentNode = this.root;
     for (const char of prefix) {
-        const charInNode = charIn(currentNode, char);
+        const charInNode = currentNode.children[char];
         if (!charInNode) return false
         currentNode = charInNode;
     }
