@@ -6,7 +6,6 @@ var Trie = function() {
 
 class TrieNode {
     constructor (char) {
-        this.char = char;
         this.children = {};
         this.terminal = false;
     }
