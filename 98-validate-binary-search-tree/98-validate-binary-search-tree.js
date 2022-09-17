@@ -35,8 +35,6 @@ const dfs = function(node) {
         leftResult = valCompare && leftSubTree.result && leftMaxVal < node.val;
     }
     
-    minVal = Math.min(minVal, node.val);
-    maxVal = Math.max(maxVal, node.val);
     const result = rightResult && leftResult
     return {result, minVal, maxVal}
 }
