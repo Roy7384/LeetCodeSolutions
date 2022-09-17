@@ -15,17 +15,19 @@ var isValidBST = function(root) {
 };
 
 const dfs = function(node) {
+    
     let rightResult = true;
     let maxVal = node.val; 
     if (node.right) {
         const valCompare = node.val < node.right.val;
-        
         if (!valCompare) return {result: false}
    
         const rightSubTree = dfs(node.right); 
-        maxVal = rightSubTree.maxVal;
         const rightMinVal = rightSubTree.minVal;  
+        maxVal = rightSubTree.maxVal;
+        
         rightResult = valCompare && rightSubTree.result && rightMinVal > node.val; 
+        if (!rightResult) return {result: false}
     }
     
     let leftResult = true;
@@ -33,10 +35,13 @@ const dfs = function(node) {
     if (node.left) {
         const valCompare = node.val > node.left.val;
         if (!valCompare) return {result: false}
+        
         const leftSubTree = dfs(node.left);
-        minVal = leftSubTree.minVal;
         const leftMaxVal = leftSubTree.maxVal;
+        minVal = leftSubTree.minVal;
+        
         leftResult = valCompare && leftSubTree.result && leftMaxVal < node.val;
+        if (!leftResult) return {result: false}
     }
     
     const result = rightResult && leftResult
