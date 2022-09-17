@@ -19,6 +19,9 @@ const dfs = function(node) {
     let maxVal = node.val; 
     if (node.right) {
         const valCompare = node.val < node.right.val;
+        
+        if (!valCompare) return {result: false}
+   
         const rightSubTree = dfs(node.right); 
         maxVal = rightSubTree.maxVal;
         const rightMinVal = rightSubTree.minVal;  
@@ -29,6 +32,7 @@ const dfs = function(node) {
     let minVal = node.val;
     if (node.left) {
         const valCompare = node.val > node.left.val;
+        if (!valCompare) return {result: false}
         const leftSubTree = dfs(node.left);
         minVal = leftSubTree.minVal;
         const leftMaxVal = leftSubTree.maxVal;
