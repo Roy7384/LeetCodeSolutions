@@ -19,13 +19,7 @@ const dfs = function(node, upper, lower) {
     
     if (node.val >= upper || node.val <= lower) return false;
     
-    let rightResult = true;
-    let leftResult = true;
-    if (node.right) {
-        rightResult = dfs(node.right, upper, node.val);
-    } 
-    if (node.left) {
-        leftResult = dfs(node.left, node.val, lower);
-    }
+    const rightResult = dfs(node.right, upper, node.val);
+    const leftResult = dfs(node.left, node.val, lower);
     return rightResult && leftResult;
 }
