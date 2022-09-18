@@ -22,9 +22,9 @@ var orangesRotting = function(grid) {
         for (let i = 0; i < nodeSize; i++) {
             const [row, col] = queue.shift();
             
-            direction.forEach((d) => {
-                const newRow = row + d[0];
-                const newCol = col + d[1];
+            direction.forEach(([dr, dc]) => {
+                const newRow = row + dr;
+                const newCol = col + dc;
                 
                 const rowInBound = newRow >= 0 && newRow < grid.length;
                 const colInBound = newCol >= 0 && newCol < grid[0].length;
