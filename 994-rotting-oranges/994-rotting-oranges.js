@@ -10,11 +10,11 @@ var orangesRotting = function(grid) {
         for (let j = 0, m = grid[0].length; j < m; j++) {
             const val = grid[i][j];
             if (val === 1) fresh++;
-            if (val === 2) queue.push([i, j])
+            if (val === 2) queue.push([i, j]);
         }
     }
     
-    const direction = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+    const direction = [[1, 0], [-1, 0], [0, 1], [0, -1]];
     let time = 0;
     
     while(queue.length > 0 && fresh > 0) {
@@ -36,7 +36,7 @@ var orangesRotting = function(grid) {
                 } 
             })
         }
-        time++ 
+        time++;
     }
     return fresh === 0 ? time : -1;
 };
