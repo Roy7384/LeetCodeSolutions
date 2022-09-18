@@ -32,7 +32,6 @@ var orangesRotting = function(grid) {
                 if (rowInBound && colInBound && grid[newRow][newCol] === 1) {
                     grid[newRow][newCol] = 2;
                     fresh--;
-                    
                     queue.push([newRow, newCol]);  
                 } 
             })
