@@ -13,8 +13,9 @@ var combinationSum = function(candidates, target) {
         }
         if (i >= candidates.length || total > target) return;
         
-        curComb.push(candidates[i]);
-        dfs(i, curComb, total + candidates[i]);
+        const curNum = candidates[i]; 
+        curComb.push(curNum);
+        dfs(i, curComb, total + curNum);
         curComb.pop();
         dfs(i + 1, curComb, total);
     }
