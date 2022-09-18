@@ -29,8 +29,11 @@ var orangesRotting = function(grid) {
         const childSize = queue.length;
         for (let i = 0; i < childSize; i++) {
             const [row, col] = queue.shift();
-            grid[row][col] = 2;
-            fresh.delete(`${row},${col}`);
+            
+            if (grid[row][col] === 1) {
+                grid[row][col] = 2;
+                fresh.delete(`${row},${col}`);
+            }
             
             direction.forEach((d) => {
                 const newRow = row + d[0];
