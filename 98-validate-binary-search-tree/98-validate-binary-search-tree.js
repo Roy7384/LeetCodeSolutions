@@ -11,39 +11,21 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-    return dfs(root).result   
-};
+    return dfs(root, Infinity, -Infinity) 
+}
 
-const dfs = function(node) {
+const dfs = function(node, upper, lower) {
+    if (!node) return true;
+    
+    if (node.val >= upper || node.val <= lower) return false;
     
     let rightResult = true;
-    let maxVal = node.val; 
-    if (node.right) {
-        const valCompare = node.val < node.right.val;
-      //  if (!valCompare) return {result: false}
-   
-        const rightSubTree = dfs(node.right); 
-        const rightMinVal = rightSubTree.minVal;  
-        maxVal = rightSubTree.maxVal;
-        
-        rightResult = valCompare && rightSubTree.result && rightMinVal > node.val; 
-       // if (!rightResult) return {result: false}
-    }
-    
     let leftResult = true;
-    let minVal = node.val;
+    if (node.right) {
+        rightResult = dfs(node.right, upper, node.val);
+    } 
     if (node.left) {
-        const valCompare = node.val > node.left.val;
-        //if (!valCompare) return {result: false}
-        
-        const leftSubTree = dfs(node.left);
-        const leftMaxVal = leftSubTree.maxVal;
-        minVal = leftSubTree.minVal;
-        
-        leftResult = valCompare && leftSubTree.result && leftMaxVal < node.val;
-        //if (!leftResult) return {result: false}
+        leftResult = dfs(node.left, node.val, lower);
     }
-    
-    const result = rightResult && leftResult
-    return {result, minVal, maxVal}
+    return rightResult && leftResult;
 }
