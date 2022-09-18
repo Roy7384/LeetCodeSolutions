@@ -37,7 +37,7 @@ var orangesRotting = function(grid) {
                 } 
             })
         }
-        time ++ 
+        time++ 
     }
     if (fresh > 0) return -1;
     return time;
