@@ -50,10 +50,11 @@ const findK = function(arr) {
     let mid;
     while (l <= r) {
         mid = Math.floor((l + r) / 2);
+        const midVal = arr[mid]
         
-        if (arr[mid] < arr[mid - 1]) {
+        if (midVal < arr[mid - 1]) {
             return mid - 1;
-        } else if (arr[mid] > arr[0]) {
+        } else if (midVal > arr[0]) {
             l = mid + 1;
         } else {
             r = mid - 1;
