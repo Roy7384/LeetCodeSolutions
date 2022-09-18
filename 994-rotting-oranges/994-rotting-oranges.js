@@ -3,7 +3,7 @@
  * @return {number}
  */
 var orangesRotting = function(grid) {
-    const fresh = new Set();
+    let fresh = 0;
     const visited = new Set(); 
     const queue = [];
     
@@ -12,7 +12,7 @@ var orangesRotting = function(grid) {
             const val = grid[i][j];
             
             if (val === 1) {
-                fresh.add(`${i},${j}`)
+                fresh++
             } else if (val === 2) {
                 queue.push([i, j])
                 visited.add(`${i},${j}`)
@@ -32,7 +32,7 @@ var orangesRotting = function(grid) {
             
             if (grid[row][col] === 1) {
                 grid[row][col] = 2;
-                fresh.delete(`${row},${col}`);
+                fresh--
             }
             
             direction.forEach((d) => {
@@ -50,7 +50,7 @@ var orangesRotting = function(grid) {
         }
         time ++ 
     }
-    if (fresh.size > 0) return -1;
+    if (fresh > 0) return -1;
     return time ? time - 1 : 0;
 };
 
