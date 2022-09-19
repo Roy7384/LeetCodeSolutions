@@ -12,21 +12,24 @@
  * @return {ListNode}
  */
 var getIntersectionNode = function(headA, headB) {
-    const exist = new Set();
+    let pointer1 = headA;
+    let pointer2 = headB;
     
-    let pointer = headA;
-    
-    while (pointer) {
-        exist.add(pointer)
-        pointer = pointer.next
-    }
-    
-    pointer = headB;
-    
-    while(pointer) {
-        if (exist.has(pointer)) return pointer
-        pointer = pointer.next;
+    while (pointer1 || pointer2) {
+        if (pointer1 === pointer2) return pointer1;
+        
+        if (pointer1 === null) {
+            pointer1 = headB;
+            pointer2 = pointer2.next
+        } else if (pointer2 === null) {
+            pointer2 = headA;
+            pointer1 = pointer1.next
+        } else {
+            pointer1 = pointer1.next;
+            pointer2 = pointer2.next;
+        }
     }
     
     return null;
+    
 };
