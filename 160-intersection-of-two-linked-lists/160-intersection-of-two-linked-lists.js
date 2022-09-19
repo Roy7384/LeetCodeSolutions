@@ -12,20 +12,19 @@
  * @return {ListNode}
  */
 var getIntersectionNode = function(headA, headB) {
-    const lookup = {};
+    const exist = new Set();
     
     let pointer = headA;
     
     while (pointer) {
-        if (!(pointer.val in lookup)) lookup[pointer.val] = []; 
-        lookup[pointer.val].push(pointer);
+        exist.add(pointer)
         pointer = pointer.next
     }
     
     pointer = headB;
     
     while(pointer) {
-        if (pointer.val in lookup && pointer === lookup[pointer.val].shift()) return pointer 
+        if (exist.has(pointer)) return pointer
         pointer = pointer.next;
     }
     
