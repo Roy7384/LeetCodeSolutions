@@ -15,21 +15,10 @@ var getIntersectionNode = function(headA, headB) {
     let pointer1 = headA;
     let pointer2 = headB;
     
-    while (pointer1 || pointer2) {
-        if (pointer1 === pointer2) return pointer1;
-        
-        if (pointer1 === null) {
-            pointer1 = headB;
-            pointer2 = pointer2.next
-        } else if (pointer2 === null) {
-            pointer2 = headA;
-            pointer1 = pointer1.next
-        } else {
-            pointer1 = pointer1.next;
-            pointer2 = pointer2.next;
-        }
+    while (pointer1 !== pointer2) {
+        pointer1 = pointer1 ? pointer1.next : headB;
+        pointer2 = pointer2 ? pointer2.next : headA;
     }
     
-    return null;
-    
+    return pointer1;
 };
