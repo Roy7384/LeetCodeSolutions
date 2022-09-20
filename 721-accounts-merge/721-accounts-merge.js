@@ -6,17 +6,19 @@ var accountsMerge = function(accounts) {
     const adjList = {};
     
     for (const account of accounts) {
-        const start = account[1]; 
-        if (!(start in adjList)) {
-            adjList[start] = [];
-        } 
-        adjList[start].push(...account.slice(2));
-        for (const email of adjList[start]) {
-            if (email === start) continue;
-            if (!(email in adjList)) adjList[email] = [];
-            adjList[email].push(start);
+        const start = account[1];
+        if (!(start in adjList)) adjList[start] = [];
+        
+        for (let i = 2, n = account.length; i < n; i++) {
+            const neigh = account[i];
+            if (neigh === start) continue;
+            adjList[start].push(neigh);
+            
+            if (!(neigh in adjList)) adjList[neigh] = [];
+            adjList[neigh].push(start);
         }
     } 
+    
     const visited = new Set(); 
     const result = [];
     for (const account of accounts) {
@@ -36,10 +38,8 @@ const dfs = function(adjList, visited, sourceEmail, mergedResult) {
     visited.add(sourceEmail);
     mergedResult.push(sourceEmail);
     
-    if (sourceEmail in adjList) {
-        for (const email of adjList[sourceEmail]) {
-            dfs(adjList, visited, email, mergedResult);
-        }
+    for (const email of adjList[sourceEmail]) {
+        dfs(adjList, visited, email, mergedResult);
     }
     
     return mergedResult;
