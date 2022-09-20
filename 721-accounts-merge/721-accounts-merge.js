@@ -6,13 +6,15 @@ var accountsMerge = function(accounts) {
     const adjList = {};
     
     for (const account of accounts) {
-        const start = account[1];
-        if (!(start in adjList)) adjList[start] = [];
-        for (let i = 2, n = account.length; i < n; i++){
-          if (!(account[i] in adjList)) adjList[account[i]] = [];
-          if (account[i] === start) continue;
-          adjList[start].push(account[i]);
-          adjList[account[i]].push(start);
+        const start = account[1]; 
+        if (!(start in adjList)) {
+            adjList[start] = [];
+        } 
+        adjList[start].push(...account.slice(2));
+        for (const email of adjList[start]) {
+            if (email === start) continue;
+            if (!(email in adjList)) adjList[email] = [];
+            adjList[email].push(start);
         }
     } 
     const visited = new Set(); 
