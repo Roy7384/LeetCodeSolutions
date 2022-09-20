@@ -3,44 +3,57 @@
  * @return {string[][]}
  */
 var accountsMerge = function(accounts) {
-    const adjList = {};
+    const emailGroupLookup = {}
+    const emailGroup = [];
     
-    for (const account of accounts) {
-        const start = account[1];
-        if (!(start in adjList)) adjList[start] = [];
-        
-        for (let i = 2, n = account.length; i < n; i++) {
-            const neigh = account[i];
-            if (neigh === start) continue;
-            adjList[start].push(neigh);
+    for (let j = 0, m = accounts.length; j < m; j++) {
+        emailGroup[j] = j;
+        const account = accounts[j];
+        for (let i = 1, n = account.length; i < n; i++) {
+            const email = account[i];
             
-            if (!(neigh in adjList)) adjList[neigh] = [];
-            adjList[neigh].push(start);
+            if (!(email in emailGroupLookup)) {
+                emailGroupLookup[email] = j;
+            } else {
+                union(j, emailGroupLookup[email], emailGroup)
+            }
         }
-    } 
+    }
     
-    const visited = new Set(); 
+    const mergedEmails = []; 
+    
+    for (const email in emailGroupLookup) {
+        const group = emailGroupLookup[email];
+        
+        const actualGroup = find(group, emailGroup);
+        if (mergedEmails[actualGroup] === undefined) mergedEmails[actualGroup] = [];
+        mergedEmails[actualGroup].push(email)
+    }
+    
     const result = [];
-    for (const account of accounts) {
-        const mergedResult = dfs(adjList, visited, account[1], []);
-        if (mergedResult) {
-            mergedResult.sort();
-            result.push([account[0], ...mergedResult])
+    for (let i = 0, n = mergedEmails.length; i < n; i++) {
+        const emails = mergedEmails[i];
+        if (emails) {
+            emails.sort();
+            result.push([accounts[i][0], ...emails])
         }
     }
-    
     return result;
-};
+} 
 
-const dfs = function(adjList, visited, sourceEmail, mergedResult) {
-    if (visited.has(sourceEmail)) return null;
-    
-    visited.add(sourceEmail);
-    mergedResult.push(sourceEmail);
-    
-    for (const email of adjList[sourceEmail]) {
-        dfs(adjList, visited, email, mergedResult);
+
+const union = function(x, y, root) {
+    let rootX = find(x, root);
+    let rootY = find(y, root);
+    if (rootX !== rootY) {
+        root[rootX] = rootY;
     }
-    
-    return mergedResult;
 }
+
+const find = function(x, root) {
+    if (root[x] === x) {
+        return x
+    }
+    return root[x] = find(root[x], root);
+}
+
