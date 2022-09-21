@@ -20,10 +20,5 @@ var wordBreak = function(s, wordDict) {
         } 
     }
     
-    for (const word of wordDict) {
-        const tempWord = s.slice(0, word.length);
-        if (tempWord === word && dp[word.length]) return true;
-    }
-    
-    return false;
+    return dp[0];
 };
