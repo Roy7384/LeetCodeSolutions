@@ -15,7 +15,7 @@ var sortColors = function(nums) {
     }
     
     for (let i = 0, n = nums.length; i < n; i++) {
-        if (i <= count[0] - 1) {
+        if (i < count[0]) {
             nums[i] = 0;
             continue;
         }
