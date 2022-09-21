@@ -4,25 +4,20 @@
  */
 var sortColors = function(nums) {
     
-    const count = {
-        0: 0,
-        1: 0,
-        2: 0
-    }
+    let index2 = nums.length - 1;
+    let index0 = 0;
+    let pointer = 0;
     
-    for (const num of nums) {
-        count[num]++
-    }
-    
-    for (let i = 0, n = nums.length; i < n; i++) {
-        if (i < count[0]) {
-            nums[i] = 0;
-            continue;
+    while (pointer <= index2) {
+        if (nums[pointer] === 0) {
+            [nums[index0], nums[pointer]] = [nums[pointer], nums[index0]];
+            index0++;
+            pointer++
+        } else if (nums[pointer] === 2) {
+            [nums[index2], nums[pointer]] = [nums[pointer], nums[index2]];
+            index2--;
+        } else {
+            pointer ++
         }
-        if (i < count[0] + count[1]) {
-            nums[i] = 1;
-            continue;
-        }
-        nums[i] = 2;
     }
 };
