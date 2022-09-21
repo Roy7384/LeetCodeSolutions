@@ -5,9 +5,9 @@
 var sortColors = function(nums) {
     
     const swapValue = (index1, index2) => {
-        const holder = nums[index1];
+        const temp = nums[index1];
         nums[index1] = nums[index2];
-        nums[index2] = holder;
+        nums[index2] = temp;
     } 
     
     let indexFor2 = nums.length - 1;
