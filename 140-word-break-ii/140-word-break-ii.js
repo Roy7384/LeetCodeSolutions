@@ -4,23 +4,23 @@
  * @return {string[]}
  */
 var wordBreak = function(s, wordDict) {
-    let dp = new Array(s.length + 1).fill(undefined);
-    dp = dp.map(_ => []);
-    dp[s.length] = [[]];
+    const dp = new Array(s.length + 1).fill().map(_ => []);
+    dp[0] = [[]];
     
-    for (let i = s.length - 1; i >= 0; i--) {
-        for (const word of wordDict) {
-            const tempWord = s.slice(i, i + word.length);
-            
-            if (s.length - i >= word.length && tempWord === word) { 
-                for (const combination of dp[i + word.length]) {
-                    dp[i].push([word, ...combination]);
-                } 
+    for (let i = 0; i <= s.length; i++) {
+        if (dp[i].length > 0) {
+            const subStr = s.slice(i);
+            for (let word of wordDict) {
+                if (subStr.indexOf(word) === 0) {
+                    for (let comb of dp[i]) {
+                        dp[i + word.length].push([...comb, word])
+                    }  
+                }
             }
         }
     }
     
-    const finalResult = dp[0].map(combination => combination.join(" "))
+    const finalResult = dp[s.length].map(combination => combination.join(" "))
 
     return finalResult;
 };
