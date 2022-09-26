@@ -10,13 +10,13 @@ var canPartition = function(nums) {
     
     potentialSum.add(0);
     
-    for (let i = 0, n = nums.length; i < n; i++) {
+    for (const num of nums) {
         const tempSum = new Set();
-        for (const ele of potentialSum.values()) {
-            const newSum = ele + nums[i];
+        for (const sum of potentialSum.values()) {
+            const newSum = sum + num;
             if (newSum === targetSum) return true;
             tempSum.add(newSum);
-            tempSum.add(ele);
+            tempSum.add(sum);
         } 
         potentialSum = tempSum;
     }
