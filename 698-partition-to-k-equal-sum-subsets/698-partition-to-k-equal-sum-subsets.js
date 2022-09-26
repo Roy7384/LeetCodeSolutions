@@ -12,7 +12,7 @@ var canPartitionKSubsets = function(nums, k) {
     const used = new Array(nums.length).fill(false);
         
     const backTrack = function (i, k, subsetSum) {
-        if (k === 0) return true;
+        if (k === 1) return true;
         
         if (subsetSum === target) return backTrack(0, k - 1, 0);
         
