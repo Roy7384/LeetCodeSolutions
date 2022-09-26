@@ -5,20 +5,18 @@
  */
 var wordBreak = function(s, wordDict) {
     const dp = new Array(s.length + 1).fill(false);
-    dp[s.length] = true;
+    dp[0] = true;
     
-    for (let i = s.length - 1; i >= 0; i--) {
-        for (const word of wordDict) {
-            if (s.length - i >= word.length) {
-                const tempWord = s.slice(i, i + word.length);
-
-                if (tempWord === word) {
-                    dp[i] = dp[i + word.length];
-                    if (dp[i]) break;
+    for (let i = 0; i <= s.length; i++) {
+        if (dp[i]) {
+            const subStr = s.slice(i);
+            for (let word of wordDict) {
+                if (subStr.indexOf(word) === 0) {
+                    dp[i + word.length] = true;
                 }
             }
-        } 
+        }
     }
     
-    return dp[0];
+    return dp[s.length];
 };
