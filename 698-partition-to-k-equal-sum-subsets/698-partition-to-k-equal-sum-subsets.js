@@ -7,6 +7,8 @@ var canPartitionKSubsets = function(nums, k) {
     const target = nums.reduce((sum, num) => sum += num) / k;
     if (target !== Math.floor(target)) return false;
     
+    nums.sort((a, b) => b - a);
+    
     const used = new Array(nums.length).fill(false);
         
     const backTrack = function (i, k, subsetSum) {
