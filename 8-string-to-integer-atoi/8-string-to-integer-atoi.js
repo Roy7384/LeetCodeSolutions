@@ -28,8 +28,6 @@ var myAtoi = function(s) {
         }
     }
     
-    if (sign === undefined) sign = true;
-    
     const number = sign ? Number(numStr) : -1 * Number(numStr);
     
     const upperB = Math.pow(2, 31) - 1;
