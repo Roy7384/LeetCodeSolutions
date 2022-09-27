@@ -7,8 +7,7 @@ var subsets = function(nums) {
     const result = [[]];
     
     for (let i = nums.length; i > 0; i--) {
-        const subArr = nums.slice(0, i);
-        backTrack(0, [], result, subArr);     
+        backTrack(0, [], result, nums.slice(0, i));     
     }
     
     return result
