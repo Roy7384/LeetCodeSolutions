@@ -9,8 +9,9 @@ var uniquePaths = function(m, n) {
     
     for (let i = 1; i < m + 1; i++) {
         for (let j = 1; j < n + 1; j++) {
-            if(i === 1 && j === 1) continue;
-            table[i][j] = table[i - 1][j] + table[i][j - 1]
+            if (i === 1 && j === 1) continue;
+            
+            table[i][j] = table[i - 1][j] + table[i][j - 1];
         }
     } 
     
