@@ -14,17 +14,14 @@ var rightSideView = function(root) {
     if (!root) return [];
     
     const result = [];
-    const queue = [];
-    queue.push([root, 1]);
-    
-    while (queue.length > 0) {
-        const [node, depth] = queue.shift();
-        
-        if (depth !== result.length) result.push(node.val); 
-        
-        if (node.right) queue.push([node.right, depth + 1]);
-        if (node.left) queue.push([node.left, depth + 1]);
-    } 
-    
+    dfsRight(root, 1, result);
     return result;
 };
+
+
+const dfsRight = function(node, depth, result) {
+    if (depth > result.length) result.push(node.val);
+    
+    if (node.right) dfsRight(node.right, depth + 1, result);
+    if (node.left) dfsRight(node.left, depth + 1, result);
+}
