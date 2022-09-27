@@ -36,5 +36,5 @@ var spiralOrder = function(matrix) {
         }
     }
     
-    return Array.from(result)
+    return result; 
 };
