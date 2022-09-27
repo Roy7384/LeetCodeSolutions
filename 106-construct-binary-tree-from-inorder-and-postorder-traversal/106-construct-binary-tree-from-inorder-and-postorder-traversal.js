@@ -12,8 +12,8 @@
  * @return {TreeNode}
  */
 var buildTree = function(inorder, postorder) {
-    if (!inorder.length) return null;
-    if (inorder.length === 1) return new TreeNode(inorder[0]);
+    if (!postorder.length) return null;
+    if (postorder.length === 1) return new TreeNode(inorder[0]);
     
     const rootVal = postorder.pop();
     
