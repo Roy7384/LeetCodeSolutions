@@ -11,7 +11,6 @@ var subsets = function(nums) {
     }
     
     return result
-    
 };
 
 const backTrack = function(i, tempResult, result, nums) {
