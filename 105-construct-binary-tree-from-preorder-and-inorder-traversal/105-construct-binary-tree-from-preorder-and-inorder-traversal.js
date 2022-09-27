@@ -20,12 +20,11 @@ var buildTree = function(preorder, inorder) {
     const split = inorder.indexOf(rootVal);
     
     const inorderLeft = inorder.slice(0, split);
-    const inorderRight = inorder.slice(split + 1);
-    
     const preorderLeft = preorder.slice(1, inorderLeft.length + 1);
-    const preorderRight = preorder.slice(inorderLeft.length + 1);
-    
     root.left = buildTree(preorderLeft, inorderLeft);
+    
+    const inorderRight = inorder.slice(split + 1);
+    const preorderRight = preorder.slice(inorderLeft.length + 1);
     root.right = buildTree(preorderRight, inorderRight);
     
     return root;
