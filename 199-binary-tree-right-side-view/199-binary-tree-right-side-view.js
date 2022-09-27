@@ -13,18 +13,18 @@
 var rightSideView = function(root) {
     if (!root) return [];
     
-    const rightSides = [];
+    const result = [];
     const queue = [];
-    queue.push([root, 0]);
+    queue.push([root, 1]);
     
     while (queue.length > 0) {
         const [node, depth] = queue.shift();
         
-        if (rightSides.length === 0 || depth !== rightSides[rightSides.length - 1][1]) rightSides.push([node, depth]); 
+        if (depth !== result.length) result.push(node.val); 
         
         if (node.right) queue.push([node.right, depth + 1]);
         if (node.left) queue.push([node.left, depth + 1]);
     } 
     
-    return rightSides.map(([node, depth]) => node.val);
+    return result;
 };
