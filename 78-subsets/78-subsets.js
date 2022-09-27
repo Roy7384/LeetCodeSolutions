@@ -5,7 +5,7 @@
 var subsets = function(nums) {
     const result = [[]];
     
-    for (let i = nums.length; i > 0; i--) {
+    for (let i = nums.length; i >= 1; i--) {
         backTrack(0, [], result, nums.slice(0, i));     
     }
     
