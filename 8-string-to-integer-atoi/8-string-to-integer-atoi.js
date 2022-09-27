@@ -6,22 +6,23 @@ var myAtoi = function(s) {
     let cleanS = s.trim();
     let numStr = '';
     let sign;
+    let digitStart = 0
     
     if (cleanS[0] === "-") {
         sign = false;
-        cleanS = cleanS.slice(1);
+        digitStart = 1;
     } else if (cleanS[0] === "+") {
         sign = true;
-        cleanS = cleanS.slice(1);
+        digitStart = 1;
     } else {
         sign = true;
     }
     
-    for (let char of cleanS) {
-        const charCode = char.charCodeAt(0);
+    for (let i = digitStart, n = cleanS.length; i < n; i++) {
+        const charCode = cleanS[i].charCodeAt(0);
         
         if (charCode >= 48 && charCode <= 57) {
-            numStr += char;
+            numStr += cleanS[i];
         } else {
             break;
         }
