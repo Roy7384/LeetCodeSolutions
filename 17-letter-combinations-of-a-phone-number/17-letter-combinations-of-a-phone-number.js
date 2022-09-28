@@ -16,18 +16,23 @@ var letterCombinations = function(digits) {
         9: ["w", "x", "y", "z"],
     }
     
-    let result = [""];
+    let result = [];
     
-    for (let digit of digits) {
-       const chars = map[digit];
-       const tempRes = [];
-       for (let res of result) {
-          for (let char of chars) {
-              tempRes.push(res + char);
-          } 
-       } 
-       result = tempRes;
-    }
+    backTrack(0, digits, map, result, []);
     
     return result;
 };
+
+
+const backTrack = function(index, digits, map, result, tempRes) {
+    if (tempRes.length === digits.length) {
+        result.push(tempRes.join(""));
+        return;
+    }
+    
+    for (let char of map[digits[index]]) {
+        tempRes.push(char);
+        backTrack(index + 1, digits, map, result, tempRes);
+        tempRes.pop();
+    }
+}
