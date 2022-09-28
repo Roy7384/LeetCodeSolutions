@@ -21,9 +21,11 @@ var exist = function(board, word) {
         if (path.has(mark)) return false;
         path.add(mark);
     
-        const res = (
-            search(row - 1, col, i + 1) || search(row + 1, col, i + 1) || search(row, col + 1, i + 1) || search(row, col - 1, i + 1)
-        );
+        const up = search(row - 1, col, i + 1);
+        const down = search(row + 1, col, i + 1);
+        const right = search(row, col + 1, i + 1);
+        const left = search(row, col - 1, i + 1);
+        const res = up || down || right || left; 
         path.delete(mark); 
         
         return res;
