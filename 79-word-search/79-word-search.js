@@ -7,9 +7,12 @@ var exist = function(board, word) {
     const path = new Set();
     const rowB = board.length;
     const colB = board[0].length;
+    const wordLen = word.length;
+    
+    if (rowB * colB < wordLen) return false;
     
     const search = function(row, col, i) { 
-        if (i === word.length) return true;
+        if (i === wordLen) return true;
         
         const rowInB = row >= 0 && row < rowB; 
         const colInB = col >= 0 && col < colB; 
