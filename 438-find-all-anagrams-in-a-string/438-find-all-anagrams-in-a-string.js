@@ -17,9 +17,10 @@ var findAnagrams = function(s, p) {
         subCount[s[i]]++;
     }
     
-    const compare = function() {
+    const compare = function(diff) {
+        if (diff in subCount) return diff;
         for (let char in subCount) {
-            if (!(char in charCount)) return false;
+            if (!(char in charCount)) return char;
             if (subCount[char] !== charCount[char]) return false;
         }
         return true;
@@ -28,9 +29,11 @@ var findAnagrams = function(s, p) {
     const result = [];
     let l = 0;
     let r = p.length - 1;
+    let diff;
     
     while (r < s.length) {
-        if (compare()) result.push(l);
+        diff = compare(diff);
+        if (diff === true) result.push(l);
         
         subCount[s[l]]--;
         if (subCount[s[l]] === 0) delete subCount[s[l]]
