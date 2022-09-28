@@ -16,8 +16,7 @@ var letterCombinations = function(digits) {
         9: ["w", "x", "y", "z"],
     }
     
-    let result = [];
-    
+    const result = [];
     backTrack(0, digits, map, result, []);
     
     return result;
