@@ -3,6 +3,7 @@
  * @return {string[]}
  */
 var letterCombinations = function(digits) {
+    if (!digits.length) return [];
     const map = {
         1: [],
         2: ["a", "b", "c"],
@@ -15,21 +16,17 @@ var letterCombinations = function(digits) {
         9: ["w", "x", "y", "z"],
     }
     
-    let result = [];
+    let result = [""];
     
     for (let digit of digits) {
-        const chars = map[digit];
-        if (result.length === 0) {
-           result.push(...chars); 
-        } else {
-           const tempRes = [];
-           for (let res of result) {
-              for (let char of chars) {
-                  tempRes.push(res + char);
-              } 
-           } 
-           result = tempRes;
-        }
+       const chars = map[digit];
+       const tempRes = [];
+       for (let res of result) {
+          for (let char of chars) {
+              tempRes.push(res + char);
+          } 
+       } 
+       result = tempRes;
     }
     
     return result;
