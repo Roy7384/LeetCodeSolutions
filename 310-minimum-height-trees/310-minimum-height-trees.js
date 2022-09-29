@@ -33,6 +33,7 @@ var findMinHeightTrees = function(n, edges) {
         let nextLeafQ = [];
         for (let leaf of leafNodes) {
             const parent = adjList[leaf].pop();
+            delete adjList[leaf];
             adjList[parent].splice(adjList[parent].indexOf(leaf), 1);
             if (adjList[parent].length === 1) nextLeafQ.push(parent);
         }
