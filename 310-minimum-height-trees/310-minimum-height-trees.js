@@ -19,7 +19,7 @@ var findMinHeightTrees = function(n, edges) {
         adjList[b].push(a);
     }
     
-    const leafNodes = [];
+    let leafNodes = [];
     for (let node in adjList) {
         if (adjList[node].length === 1) leafNodes.push(Number(node));
     }
@@ -30,16 +30,13 @@ var findMinHeightTrees = function(n, edges) {
         const currentLeafCount = leafNodes.length;
         nodeLeft -= currentLeafCount;
         
-        for (let i = 0; i < currentLeafCount; i++) {
-            const leafNode = leafNodes.pop();
-            const parent = adjList[leafNode].pop();
-            adjList[parent].splice(adjList[parent].indexOf(leafNode), 1);
-            delete adjList[leafNode];
+        let nextLeafQ = [];
+        for (let leaf of leafNodes) {
+            const parent = adjList[leaf].pop();
+            adjList[parent].splice(adjList[parent].indexOf(leaf), 1);
+            if (adjList[parent].length === 1) nextLeafQ.push(parent);
         }
-        
-        for (let node in adjList) {
-            if (adjList[node].length === 1 || adjList[node].length === 0) leafNodes.push(Number(node));
-        }
+        leafNodes = nextLeafQ;
     }
     
     return leafNodes;   
