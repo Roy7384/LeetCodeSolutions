@@ -4,7 +4,13 @@
  */
 var KthLargest = function(k, nums) {
     this.k = k;
-    this.nums = nums;
+    this.heap = [null];
+    for (let num of nums) {
+        this.insert(num);
+    };
+    while(this.heap.length - 1 > k) {
+        this.rmInHeap();
+    }
 };
 
 /** 
@@ -12,9 +18,56 @@ var KthLargest = function(k, nums) {
  * @return {number}
  */
 KthLargest.prototype.add = function(val) {
-    this.nums.push(val);
-    return this.nums.sort((a, b) => b - a)[this.k - 1]
+    this.insert(val);
+    if (this.heap.length - 1 > this.k) this.rmInHeap();
+    return this.heap[1];
 };
+
+KthLargest.prototype.insert = function(num) {
+    this.heap.push(num);
+    
+    if(this.heap.length > 2) {
+        let idx = this.heap.length - 1;
+        while(this.heap[idx] < this.heap[Math.floor(idx/2)]) {
+            if (idx >= 1) {
+                const parent = Math.floor(idx/2);
+                [this.heap[parent], this.heap[idx]] = [this.heap[idx], this.heap[parent]];
+                if (parent > 1) {
+                    idx = parent;
+                } else break;
+            }
+        }
+    }
+};
+
+KthLargest.prototype.rmInHeap = function() {
+    if (this.heap.length === 2) {
+        this.heap.splice(1, 1);
+    } else if (this.heap.length > 2) {
+        this.heap[1] = this.heap[this.heap.length - 1];
+        this.heap.pop();
+        if (this.heap.length === 3) {
+            if (this.heap[1] > this.heap[2]) {
+                [this.heap[1], this.heap[2]] = [this.heap[2], this.heap[1]];
+            }
+        }
+        let i = 1;
+        let left = 2;
+        let right = 3;
+        while (this.heap[i] > this.heap[left] || this.heap[i] > this.heap[right]) {
+            if (this.heap[left] < this.heap[right]) {
+                [this.heap[i], this.heap[left]] = [this.heap[left], this.heap[i]];
+                i = left;
+            } else {
+                [this.heap[i], this.heap[right]] = [this.heap[right], this.heap[i]];
+                i = right;
+            }
+            left = 2 * i;
+            right = 2 * i + 1;
+            if (this.heap[left] === undefined || this.heap[right] === undefined) break;
+        }
+    } 
+}
 
 /** 
  * Your KthLargest object will be instantiated and called as such:
