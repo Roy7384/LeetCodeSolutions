@@ -29,28 +29,22 @@ KthLargest.prototype.insert = function(num) {
     if(this.heap.length > 2) {
         let idx = this.heap.length - 1;
         while(this.heap[idx] < this.heap[Math.floor(idx/2)]) {
-            if (idx >= 1) {
-                const parent = Math.floor(idx/2);
-                [this.heap[parent], this.heap[idx]] = [this.heap[idx], this.heap[parent]];
-                if (parent > 1) {
-                    idx = parent;
-                } else break;
-            }
+            const parent = Math.floor(idx/2);
+            [this.heap[parent], this.heap[idx]] = [this.heap[idx], this.heap[parent]];
+            if (parent === 1) break;
+            idx = parent;
         }
     }
 };
 
 KthLargest.prototype.rmInHeap = function() {
-    if (this.heap.length === 2) {
-        this.heap.splice(1, 1);
-    } else if (this.heap.length > 2) {
-        this.heap[1] = this.heap[this.heap.length - 1];
-        this.heap.pop();
-        if (this.heap.length === 3) {
-            if (this.heap[1] > this.heap[2]) {
-                [this.heap[1], this.heap[2]] = [this.heap[2], this.heap[1]];
-            }
+    this.heap[1] = this.heap[this.heap.length - 1];
+    this.heap.pop();
+    if (this.heap.length === 3) {
+        if (this.heap[1] > this.heap[2]) {
+            [this.heap[1], this.heap[2]] = [this.heap[2], this.heap[1]];
         }
+    } else {
         let i = 1;
         let left = 2;
         let right = 3;
@@ -66,7 +60,7 @@ KthLargest.prototype.rmInHeap = function() {
             right = 2 * i + 1;
             if (this.heap[left] === undefined || this.heap[right] === undefined) break;
         }
-    } 
+    }
 }
 
 /** 
