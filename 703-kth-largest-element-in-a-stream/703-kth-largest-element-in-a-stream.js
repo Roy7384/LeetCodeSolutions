@@ -44,7 +44,7 @@ KthLargest.prototype.rmInHeap = function() {
         if (this.heap[1] > this.heap[2]) {
             [this.heap[1], this.heap[2]] = [this.heap[2], this.heap[1]];
         }
-    } else {
+    } else if (this.heap.length > 3) {
         let i = 1;
         let left = 2;
         let right = 3;
