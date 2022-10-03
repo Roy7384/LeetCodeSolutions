@@ -12,20 +12,23 @@
  * @return {number}
  */
 var kthSmallest = function(root, k) {
-    if (k === 0) return root.val;
-    const leftSubCount = countNode(root.left);
-    if (leftSubCount === k - 1) return root.val;
-    
-    if (leftSubCount >= k) return kthSmallest(root.left, k);
-    if (leftSubCount < k) return kthSmallest(root.right, k - leftSubCount - 1);
-};
+    return inOrderTra(root, [], k)[0];
+}
 
-const countNode = function(node) {
-    if (node === null) return 0;
-    let result = 1;
+
+const inOrderTra = function(root, arr, k) {
+    if (root === null) return null; 
     
-    const leftResult = countNode(node.left);
-    const rightResult = countNode(node.right);
+    if (root.left) {
+        const result = inOrderTra(root.left, arr, k);
+        if (result) return result;
+    }
     
-    return result + leftResult + rightResult;
+    arr.push(root.val);
+    if (arr.length === k) return [arr[k - 1]];
+    
+    if (root.right) {
+        const result = inOrderTra(root.right, arr, k);
+        if (result) return result;
+    }
 }
