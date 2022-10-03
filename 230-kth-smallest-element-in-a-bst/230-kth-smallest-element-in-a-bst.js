@@ -12,23 +12,23 @@
  * @return {number}
  */
 var kthSmallest = function(root, k) {
-    return inOrderTra(root, [], k)[0];
+    return inOrderTra(root, [0], k)[0];
 }
 
 
-const inOrderTra = function(root, arr, k) {
+const inOrderTra = function(root, counter, k) {
     if (root === null) return null; 
     
     if (root.left) {
-        const result = inOrderTra(root.left, arr, k);
+        const result = inOrderTra(root.left, counter, k);
         if (result) return result;
     }
     
-    arr.push(root.val);
-    if (arr.length === k) return [arr[k - 1]];
+    counter[0] ++;
+    if (counter[0] === k) return [root.val];
     
     if (root.right) {
-        const result = inOrderTra(root.right, arr, k);
+        const result = inOrderTra(root.right, counter, k);
         if (result) return result;
     }
 }
