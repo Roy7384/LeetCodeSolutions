@@ -2,9 +2,8 @@
  * @param {number} capacity
  */
 var LRUCache = function(capacity) {
-    this.cache = new Map();
-   this.size = 0;
-   this.capacity = capacity;
+    this.data = new Map();
+    this.cap = capacity;
 };
 
 /** 
@@ -12,13 +11,11 @@ var LRUCache = function(capacity) {
  * @return {number}
  */
 LRUCache.prototype.get = function(key) {
-    if (this.cache.has(key)){
-    let val = this.cache.get(key);
-    this.cache.delete(key);
-    this.cache.set(key, val);
-    return this.cache.get(key);
-  }
-  else return -1;
+    const result = this.data.get(key); 
+    if (result === undefined) return -1;
+    this.data.delete(key);
+    this.data.set(key, result);
+    return result;
 };
 
 /** 
@@ -27,23 +24,13 @@ LRUCache.prototype.get = function(key) {
  * @return {void}
  */
 LRUCache.prototype.put = function(key, value) {
- if (this.cache.has(key)){
-    if (this.cache.size <= 1) this.cache.set(key, value)
-    else {
-      this.cache.delete(key)
-      this.cache.set(key, value)
-      return;
+    if (this.data.has(key)) {
+        this.data.delete(key);
+    } 
+    this.data.set(key, value);
+    if (this.data.size > this.cap) {
+        this.data.delete(this.data.keys().next().value);
     }
-  }
-  
-  if (this.size === this.capacity){
-    const [firstKey] = this.cache.keys()
-    this.cache.delete(firstKey)
-    this.cache.set(key, value)
-  } else{ 
-      this.cache.set(key, value)
-      this.size++
-  }
 };
 
 
