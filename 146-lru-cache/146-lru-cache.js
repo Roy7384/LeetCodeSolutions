@@ -26,7 +26,7 @@ LRUCache.prototype.get = function(key) {
 LRUCache.prototype.put = function(key, value) {
     if (this.data.has(key)) {
         this.data.delete(key);
-    } 
+    }
     this.data.set(key, value);
     if (this.data.size > this.cap) {
         this.data.delete(this.data.keys().next().value);
