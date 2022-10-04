@@ -33,16 +33,16 @@ var serialize = function(root) {
 
 var deserialize = function(data) {
     if(!data.length) return null;
-    let fData = data.split(',');
-    let ptr = 0;
+    let arr = data.split(',');
+    let pointer = 0;
     
     const dfs = () => {
-        if(fData[ptr] === NULL_NODE) {
-            ptr++;
+        if(arr[pointer] === NULL_NODE) {
+            pointer ++;
             return null;
         }
-        let node = new TreeNode(parseInt(fData[ptr]));
-        ptr++;
+        let node = new TreeNode(arr[pointer]);
+        pointer ++;
         node.left = dfs();
         node.right = dfs();
         return node;
