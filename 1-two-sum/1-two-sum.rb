@@ -7,6 +7,7 @@
          diff_lookup[num] = i
        else
          return [diff_lookup[diff], i]
+         # testing out codespace 
        end
      end
    end
